@@ -29,6 +29,12 @@ button {
 	margin: 5px 0;
 }
 
+form {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
 .alumnos {
 	width: 50%;
 	display: flex;
@@ -48,37 +54,29 @@ button {
 	width: 98%;
 	background: #6caaff;
 	padding: 10px;
-	border-radius: 5px;
 	border: 0;
 	color: #fff;
-	font-weight: bold;
 }
 
 input {
 	width: 48%;
 	padding: 10px;
-	margin: 5px 10px 5px 0;
+	margin: 5px 12px 5px 0;
 	font-weight: bold;
-	font-size: 0.8rem;
 	color: #868e96;
 	border-radius: 5px;
 	border: 1px solid #ced4db;
 }
 
-.removeStudent,
-.searchStudent {
-	width: 48.5%;
-	padding: 10px;
-	border-radius: 5px;
-	border: 0;
-	color: #fff;
-	font-weight: bold;
-}
 
 .removeStudent {
 	background-color: #ec8188;
+	border: 0;
+	color: #fff;
 }
 
 .searchStudent {
-	background-color: #28a745
+	background-color: #28a745;
+	border: 0;
+	color: #fff;
 }
