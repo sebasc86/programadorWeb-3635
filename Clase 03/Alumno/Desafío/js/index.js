@@ -35,10 +35,9 @@ do {
   
 
 
-
+var userAdd = prompt('Ingresar 1er numero');
 
 do { 
-   var userAdd = prompt('Ingresar 1er numero');
    var userAdd2 = prompt('Ingresar 2do numero');
 } while (userOperation === 'Division' && userAdd2 === '0' )
 
