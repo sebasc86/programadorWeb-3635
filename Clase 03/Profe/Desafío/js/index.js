@@ -7,9 +7,12 @@ var parsedNumber1 = parseFloat(number1, 10)
 
 // Pido el segundo número al menos una vez, si la operación es división
 // e ingreso cero lo pido de nuevo
+var number2
+var parsedNumber2
+
 do {
-  var number2 = prompt('Ingerese el segundo número')
-  var parsedNumber2 = parseFloat(number2, 10)
+  number2 = prompt('Ingerese el segundo número')
+  parsedNumber2 = parseFloat(number2, 10)
 } while (operation === 'div' && parsedNumber2 === 0)
 
 // Creo una variable para guardar el resultado
