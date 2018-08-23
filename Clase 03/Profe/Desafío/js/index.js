@@ -39,7 +39,7 @@ switch (operation) {
 
 // Creo una variable donde voy a guardar el mensaje
 // que muestro como resultado de la operación
-var menssage = 'El resultado de la ' + operation + ' es: ' + result
+var message = 'El resultado de la ' + operation + ' es: ' + result
 
 // Muestro el mensaje en consola
-console.log(menssage)
+console.log(message)
