@@ -3,7 +3,7 @@ console.log('init.app')
 var studentsList = [
   {
     firstName: 'Juan',
-    lastName: 'Pérez',
+    lastName: 'Perez',
     dni: 45678987
   },
   {
@@ -13,7 +13,7 @@ var studentsList = [
   },
   {
     firstName: 'Pedro',
-    lastName: 'Mármol',
+    lastName: 'Marmol',
     dni: 45678956
   },
   {
@@ -33,7 +33,8 @@ function numberUserArray(objectStudents) {
 
     if(studentsList[i]['firstName'] === userSearch || studentsList[i]['lastName'] === userSearch) {
       return numberUser = i 
-    } 
+    }
+     
   }
 
   return -1
