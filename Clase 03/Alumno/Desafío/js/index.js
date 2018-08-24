@@ -34,26 +34,33 @@ do {
 } while (userOperation === null)
   
 
-
+var numberResult
 var userAdd = prompt('Ingresar 1er numero');
 
 do { 
    var userAdd2 = prompt('Ingresar 2do numero');
 } while (userOperation === 'Division' && userAdd2 === '0' )
 
+userAddParse = parseInt(userAdd);
+userAddParse2 = parseInt(userAdd2);
 
 
-
-if(userOperation === 'Suma') {
-  userAddParse = parseInt(userAdd);
-  userAddParse2 = parseInt(userAdd2);
-  console.log('Su Suma es = ' + (userAddParse + userAddParse2))
-} else if (userOperation === 'Resta') {
-  console.log('Su Resta es = ' + (userAdd - userAdd2))
-} else if (userOperation === 'Multiplicacion') {
-  console.log('Su Multiplicacion es = ' + (userAdd * userAdd2))
-} else if (userOperation === 'Division') {
-  console.log('Su Division es = ' + (userAdd / userAdd2))
-} else {
-  console.log('No existe operacion')
+switch(userOperation) {
+  case 'Suma':
+    numberResult = userAddParse + userAddParse2
+    break
+  case 'Resta':
+    numberResult = userAddParse - userAddParse2
+    break
+  case 'Multiplicacion':
+    numberResult = userAddParse * userAddParse2
+    break
+  case 'Division':
+    numberResult = userAddParse / userAddParse2
+    break
+  default:
+    numberResult = null
+    break
 }
+
+console.log('Su operacion matematica es la ' + userOperation + ' y el resultado es: ' + numberResult)
