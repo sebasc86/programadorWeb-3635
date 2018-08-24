@@ -26,7 +26,6 @@ var studentsList = [
 
 var userSearch = prompt('Buscar el usuario')
 var numberUser
-var userNull
 
 function numberUserArray(objectStudents) {
 
@@ -36,7 +35,7 @@ function numberUserArray(objectStudents) {
       return numberUser = i 
     } 
   }
-  
+
   return -1
 
 }
