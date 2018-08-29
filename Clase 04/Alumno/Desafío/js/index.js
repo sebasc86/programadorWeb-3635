@@ -31,8 +31,11 @@ function numberUserArray(objectStudents) {
 
   for (var i = 0; i < studentsList.length; i++) {
 
-    if(studentsList[i]['firstName'] === userSearch || studentsList[i]['lastName'] === userSearch) {
-      return numberUser = i 
+    var student = studentsList[i]
+
+    if(student.firstName === userSearch || student.lastName === userSearch) {
+      numberUser = i 
+      return numberUser
     }
      
   }
