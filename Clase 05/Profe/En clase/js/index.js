@@ -36,6 +36,7 @@ var student = {
 
 // showMessage()
 
+
 // var newStudent2 = new Student('Ana', 'Martin', 33456789)
 
 // console.log(newStudent2)
