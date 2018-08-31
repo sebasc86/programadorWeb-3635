@@ -1,12 +1,10 @@
 console.log('init.app')
 
-// En el caso de solicitar al usuario. (No valido por el enunciado).
-// var strContent = prompt ('ingrese un String valido').
-// var strSearch = prompt('ingrese un String que quiera comparar');.
-
 
 //Declaro la funcion
 function includesText(strSearch, strContent) {
+
+
 	//Si alguno de los dos no es un string ingreso al if corto y devuelvo false.
 	if (typeof strSearch !== 'string' || typeof strContent !== 'string'){
 		return false
@@ -16,7 +14,7 @@ function includesText(strSearch, strContent) {
 	strSearch = strSearch.toUpperCase()
 	strContent = strContent.toUpperCase()
 
-	//Declaro el indexOf para verificar el texto buscado 
+	//Declaro el indexOf para verificar el texto buscado esta dentro del contenido declarado 
 	strResult = strContent.indexOf(strSearch)
 
 	// Si es diferente a -1 devuelvo True, si no false.
@@ -28,9 +26,6 @@ function includesText(strSearch, strContent) {
 	
 }
 
-// probar funcion con prompt en este caso siempre va a ser un string.
-// var strCompare = includesText(strSearch, strContent)
-// console.log(strCompare);
 
 // probando funcion con parametros manuales segun ejercicio.
 
