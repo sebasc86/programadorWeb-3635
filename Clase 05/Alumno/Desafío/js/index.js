@@ -54,10 +54,13 @@ console.log(student.getId())
 console.log(student.getFullName())
 
 var student2 = new Student('Ana', '', 11202030, 'prueba@gmail.com')
+console.log(student2.getId())
 console.log(student2.getFullName())
 
 var student3 = new Student('', 'Fernandez', 11202030, 'prueba@gmail.com')
+console.log(student3.getId())
 console.log(student3.getFullName())
 
 var student4 = new Student('', '', 11202030, 'prueba@gmail.com')
+console.log(student4.getId())
 console.log(student4.getFullName())
