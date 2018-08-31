@@ -10,5 +10,8 @@ function deleteElement(index, array) {
   }
 }
 
-var numbers2 = deleteElement(2, numbers)
+var numbers3 = deleteElement(2, numbers)
 console.log(numbers2)
+
+var numbers4 = deleteElement(1, numbers)
+console.log(numbers3)
