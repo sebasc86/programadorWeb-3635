@@ -7,7 +7,7 @@ var student = {
   email: 'juan@gmail.com'
 }
 
-function createNode(object) {
+function createNode(objStudent) {
 
   var id = object.dni
   var fullName = object.firstName + " " + object.lastName
@@ -34,10 +34,9 @@ function createNode(object) {
   //Forma corta
   liNode.innerHTML =  '<h1>' + fullName + '</h1>' +  '<h1>' + dni +'</h3>' + '<p>' + email + '</p>'
 
-  
-  return liNode
+  listParentNode = document.getElementById(id).parentNode // google
+  return listParentNode.appendChild(liNode)
 
 }
 
 console.log(createNode(student))
-
