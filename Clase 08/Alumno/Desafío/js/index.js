@@ -17,45 +17,27 @@ function createNode(object) {
 
   var liNode = document.createElement('li')
   liNode.id = id
+  liNode.className = 'list-group-item'
+  
+  /* Forma Larga
   var h1Node = document.createElement('h1')
-  h1Node.innerHTML = fullName
+  h1Node.innerHTML = fullName 
   var h3Node = document.createElement('h3')
   h3Node.innerHTML = dni
   var pNode = document.createElement('p')
-  pNode.innerHTML = email
-
-  liNode.appendChild(h1Node)
+  pNode.innerHTML = email 
+  liNode.appendChild(liNodeId)
   liNode.appendChild(h3Node)
-  liNode.appendChild(pNode)
+  liNode.appendChild(pNode) 
+  */
 
+  //Forma corta
+  liNode.innerHTML =  '<h1>' + fullName + '</h1>' +  '<h1>' + dni +'</h3>' + '<p>' + email + '</p>'
+
+  
   return liNode
 
 }
 
 console.log(createNode(student))
 
-// function Student(firstName, lastName, dni, email) {
-//   this.firstName = firstName
-//   this.lastName = lastName
-//   this.dni = dni
-//   this.email = email
-
-//   var id = Math.random()
-
-//   this.getId = function () {
-//     return id
-//   }
-
-//   this.getFullName = function () {
-//     if (firstName && lastName) {
-//       return (firstName + ' ' + lastName)
-//     } else if (!firstName && lastName) {
-//       return (lastName)
-//     } else if (firstName && !lastName) {
-//       return (firstName)
-//     } else if (!firstName && !lastName) {
-//       return ('')
-//     }
-//   }
-
-// }
