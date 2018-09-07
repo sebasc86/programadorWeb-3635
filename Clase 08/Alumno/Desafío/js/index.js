@@ -9,10 +9,10 @@ var student = {
 
 function createNode(objStudent) {
 
-  var id = object.dni
-  var fullName = object.firstName + " " + object.lastName
+  var id = objStudent.dni
+  var fullName = objStudent.firstName + " " + objStudent.lastName
   var dni = 'DNI: ' + id
-  var email = 'Email: ' + object.email
+  var email = 'Email: ' + objStudent.email
 
 
   var liNode = document.createElement('li')
