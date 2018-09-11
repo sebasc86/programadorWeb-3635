@@ -18,7 +18,7 @@ function createNode(objStudent) {
   var liNode = document.createElement('li')
   liNode.id = id
   liNode.className = 'list-group-item'
-  
+
   /* Forma Larga
   var h1Node = document.createElement('h1')
   h1Node.innerHTML = fullName 
@@ -32,7 +32,7 @@ function createNode(objStudent) {
   */
 
   //Forma corta
-  liNode.innerHTML =  '<h1>' + fullName + '</h1>' +  '<h1>' + dni +'</h3>' + '<p>' + email + '</p>'
+  liNode.innerHTML = '<h1>' + fullName + '</h1>' + '<h3>' + dni + '</h3>' + '<p>' + email + '</p>'
 
   listParentNode = document.getElementById(id).parentNode // google
   return listParentNode.appendChild(liNode)
