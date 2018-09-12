@@ -39,4 +39,6 @@ function createNode(objStudent) {
 
 }
 
+
+
 console.log(createNode(student))
