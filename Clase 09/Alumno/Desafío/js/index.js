@@ -30,11 +30,11 @@ function validateEmail(event) {
   input = event.target
   inputValue = input.value
 
-  if (inputValue && inputValue.indexOf('@') === -1) {
+  if (!!inputValue && inputValue.indexOf('@') === -1) {
     input.classList.remove('is-valid')
     input.classList.add('is-invalid')
     submitButton.disabled = true
-  } else if (inputValue && inputValue.indexOf('.') === -1) {
+  } else if (!!inputValue && inputValue.indexOf('.') === -1) {
     input.classList.remove('is-valid')
     input.classList.add('is-invalid')
     submitButton.disabled = true
