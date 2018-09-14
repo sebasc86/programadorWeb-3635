@@ -34,8 +34,8 @@ function createNode(objStudent) {
   //Forma corta
   liNode.innerHTML = '<h1>' + fullName + '</h1>' + '<h3>' + dni + '</h3>' + '<p>' + email + '</p>'
 
-  listParentNode = document.getElementById(id).parentNode // google
-  return listParentNode.appendChild(liNode)
+
+  return liNode
 
 }
 
