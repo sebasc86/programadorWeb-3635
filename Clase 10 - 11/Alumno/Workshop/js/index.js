@@ -34,70 +34,26 @@ var searchButtonNode = document.getElementById('searchStudentButton')
 
 searchButtonNode.onclick = searchStudent
 
+//Muestra la lista al inicio del programa
 
-//validate SearchStudent
+viewListStudent()
 
-function searchStudent() {
-  
+//Busca Estudiante
+
+function searchStudent () {
   var searchName = document.getElementById('searchText')
 
   inputSearchNode = searchName.value.trim()
 
   var searchStudent = searchInArrayStudents(inputSearchNode, studentsList)
 
-  if(!!inputSearchNode && searchStudent > -1){
-    var viewStudent = createNode (studentsList[searchStudent])
-  
+  if (!!inputSearchNode && searchStudent > -1) {
+    var viewStudent = createNode(studentsList[searchStudent])
+
     deleteListStudent()
     mainListNode.appendChild(viewStudent)
   }
 }
-
-
-function searchInArrayStudents(textStr, arraySearch) {
-
-  for (var i = 0; i < arraySearch.length; i++) {
-
-    var studentLastName = arraySearch[i].lastName
-    var studentFirstName = arraySearch[i].firstName
-
-    var comparisonFirsName = includesText(textStr, studentFirstName)
-
-    var comparisonLastName = includesText(textStr, studentLastName)
-
-    if(!!comparisonFirsName || !!comparisonLastName) {
-      return i
-    }
-     
-  }
-
-  return -1
-}
-
-function includesText(strSearch, strContent) {
-
-
-	//Si alguno de los dos no es un string ingreso al if corto y devuelvo false.
-	if (typeof strSearch !== 'string' || typeof strContent !== 'string') {
-		return false
-	}
-
-	//declaro las variables para almacenar el nuevo string pasado en Mayúscula
-	strSearch = strSearch.toUpperCase()
-	strContent = strContent.toUpperCase()
-
-	//Declaro el indexOf para verificar el texto buscado esta dentro del contenido declarado 
-	strResult = strContent.indexOf(strSearch)
-
-	// Si es diferente a -1 devuelvo True, si no false.
-	if (strResult !== -1) {
-		return true
-	} else {
-		return false
-	}
-
-}
-
 
 //Elimina Studiante
 
@@ -145,8 +101,6 @@ function studentAdd () {
   inputNameNode.classList.remove('is-valid')
   inputDniNode.classList.remove('is-valid')
   inputEmailNode.classList.remove('is-valid')
-  deleteListStudent()
-  viewListStudent()
 }
 
 //Valida Boton Submit
@@ -164,7 +118,7 @@ function validateSubmitButton () {
 
 //validate Email
 
-function validateEmail(event) {
+function validateEmail (event) {
   input = event.target
   inputValue = input.value
 
@@ -178,9 +132,8 @@ function validateEmail(event) {
     input.classList.add('is-valid')
     input.classList.remove('is-invalid')
   }
-  validateSubmitButton ()
+  validateSubmitButton()
 }
-
 
 //validate lastName
 
@@ -193,7 +146,6 @@ function validateLastName (event) {
     inputLastNameNode.value = ''
   }
 }
-
 
 //Valida Nombre
 
@@ -232,7 +184,49 @@ function validateDni (event) {
   validateSubmitButton()
 }
 
-//BuscaStudiante
+//Busca estudiante por Array necesita funcion IncludesText
+
+function searchInArrayStudents (textStr, arraySearch) {
+  for (var i = 0; i < arraySearch.length; i++) {
+    var studentLastName = arraySearch[i].lastName
+    var studentFirstName = arraySearch[i].firstName
+
+    var comparisonFirsName = includesText(textStr, studentFirstName)
+
+    var comparisonLastName = includesText(textStr, studentLastName)
+
+    if (!!comparisonFirsName || !!comparisonLastName) {
+      return i
+    }
+  }
+
+  return -1
+}
+
+// Busca por texto
+
+function includesText (strSearch, strContent) {
+  //Si alguno de los dos no es un string ingreso al if corto y devuelvo false.
+  if (typeof strSearch !== 'string' || typeof strContent !== 'string') {
+    return false
+  }
+
+  //declaro las variables para almacenar el nuevo string pasado en Mayúscula
+  strSearch = strSearch.toUpperCase()
+  strContent = strContent.toUpperCase()
+
+  //Declaro el indexOf para verificar el texto buscado esta dentro del contenido declarado
+  strResult = strContent.indexOf(strSearch)
+
+  // Si es diferente a -1 devuelvo True, si no false.
+  if (strResult !== -1) {
+    return true
+  } else {
+    return false
+  }
+}
+
+//BuscaStudiante por DNI
 
 function searchDniStudent (dni, studentsList) {
   for (var i = 0; i < studentsList.length; i++) {
@@ -294,19 +288,18 @@ function setLocalList (key, arrayList) {
 }
 
 //Apendea//Muestra lista Lista
-viewListStudent()
-function viewListStudent() {
+
+function viewListStudent () {
   for (var i = 0; i < studentsList.length; i++) {
     student = createNode(studentsList[i])
     mainListNode.appendChild(student)
   }
 }
 
-// Eliminar elementos en pantalla 
+// Eliminar elementos en pantalla
 
-function deleteListStudent() {
+function deleteListStudent () {
   while (mainListNode.firstChild) {
-    mainListNode.removeChild(mainListNode.firstChild);
+    mainListNode.removeChild(mainListNode.firstChild)
   }
 }
-
