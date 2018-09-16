@@ -68,13 +68,12 @@ function deleteStudent () {
   var deleteDniNode = document.getElementById('deleteDni')
   inputValueNode = deleteDniNode.value
   var valueExist = searchDniStudent(inputValueNode, studentsList)
-  if (valueExist != -1) {
+  var dniExist = document.getElementById(inputValueNode)
+  if (valueExist != -1 && !!dniExist) {
+    mainListNode.removeChild(dniExist)
     studentsList.splice(valueExist, 1)
     setLocalList(KEY_LOCAL, studentsList)
-    mainListNode.removeChild(mainListNode.childNodes[valueExist])
   }
-
-  deleteDniNode.value = ''
 }
 
 //Agrega Estudiante
