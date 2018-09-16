@@ -58,6 +58,8 @@ function searchStudent () {
       mainListNode.appendChild(student)
     }
   }
+
+  searchName.value = ''
 }
 
 //Elimina Studiante
