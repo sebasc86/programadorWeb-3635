@@ -51,7 +51,7 @@ function searchStudent () {
   )
 
   if (!!inputSearchNode && positionStudentArray.length > 0) {
-    deleteListStudent()
+    mainListNode.innerHTML = ''
     for (var i = 0; i < positionStudentArray.length; i++) {
       positionStudentNumber = positionStudentArray[i]
       student = createNode(studentsList[positionStudentNumber])
@@ -299,13 +299,5 @@ function viewListStudent () {
   for (var i = 0; i < studentsList.length; i++) {
     student = createNode(studentsList[i])
     mainListNode.appendChild(student)
-  }
-}
-
-// Eliminar elementos en pantalla
-
-function deleteListStudent () {
-  while (mainListNode.firstChild) {
-    mainListNode.removeChild(mainListNode.firstChild)
   }
 }
