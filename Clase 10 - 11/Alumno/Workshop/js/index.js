@@ -6,19 +6,19 @@ var studentsList = getLocalList(KEY_LOCAL)
 
 var mainListNode = document.getElementById('mainList')
 
-inputNameNode = document.getElementById('firstName')
+var inputNameNode = document.getElementById('firstName')
 
 inputNameNode.onblur = validateName
 
-inputLastNameNode = document.getElementById('lastName')
+var inputLastNameNode = document.getElementById('lastName')
 
 inputLastNameNode.onblur = validateLastName
 
-inputDniNode = document.getElementById('dni')
+var inputDniNode = document.getElementById('dni')
 
 inputDniNode.onblur = validateDni
 
-inputEmailNode = document.getElementById('email')
+var inputEmailNode = document.getElementById('email')
 
 inputEmailNode.onblur = validateEmail
 
@@ -45,13 +45,18 @@ function searchStudent () {
 
   inputSearchNode = searchName.value.trim()
 
-  var searchStudent = searchInArrayStudents(inputSearchNode, studentsList)
+  var positionStudentArray = searchInArrayStudents(
+    inputSearchNode,
+    studentsList
+  )
 
-  if (!!inputSearchNode && searchStudent > -1) {
-    var viewStudent = createNode(studentsList[searchStudent])
-
+  if (!!inputSearchNode && positionStudentArray.length > 0) {
     deleteListStudent()
-    mainListNode.appendChild(viewStudent)
+    for (var i = 0; i < positionStudentArray.length; i++) {
+      positionStudentNumber = positionStudentArray[i]
+      student = createNode(studentsList[positionStudentNumber])
+      mainListNode.appendChild(student)
+    }
   }
 }
 
@@ -135,7 +140,7 @@ function validateEmail (event) {
   validateSubmitButton()
 }
 
-//validate lastName
+//valida hace un trim de lastname setea '' por defecto si no ingresa nada
 
 function validateLastName (event) {
   input = event.target
@@ -187,6 +192,7 @@ function validateDni (event) {
 //Busca estudiante por Array necesita funcion IncludesText
 
 function searchInArrayStudents (textStr, arraySearch) {
+  var studentNumberArray = []
   for (var i = 0; i < arraySearch.length; i++) {
     var studentLastName = arraySearch[i].lastName
     var studentFirstName = arraySearch[i].firstName
@@ -196,11 +202,11 @@ function searchInArrayStudents (textStr, arraySearch) {
     var comparisonLastName = includesText(textStr, studentLastName)
 
     if (!!comparisonFirsName || !!comparisonLastName) {
-      return i
+      studentNumberArray.push(i)
     }
   }
 
-  return -1
+  return studentNumberArray
 }
 
 // Busca por texto
