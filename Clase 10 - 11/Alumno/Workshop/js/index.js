@@ -30,6 +30,10 @@ var deleteButtonNode = document.getElementById('deleteStudentButton')
 
 deleteButtonNode.onclick = deleteStudent
 
+var deleteDniNode = document.getElementById('deleteDni')
+
+deleteDniNode.onblur = validateButtonDelete
+
 var searchButtonNode = document.getElementById('searchStudentButton')
 
 searchButtonNode.onclick = searchStudent
@@ -66,13 +70,24 @@ function searchStudent () {
 
 function deleteStudent () {
   var deleteDniNode = document.getElementById('deleteDni')
-  inputValueNode = deleteDniNode.value
-  var valueExist = searchDniStudent(inputValueNode, studentsList)
-  var dniExist = document.getElementById(inputValueNode)
-  if (valueExist != -1 && !!dniExist) {
+  inputDniNode = deleteDniNode.value
+  var index = searchDniStudent(inputDniNode, studentsList)
+  var dniExist = document.getElementById(inputDniNode)
+  if (index != -1 && !!dniExist) {
     mainListNode.removeChild(dniExist)
-    studentsList.splice(valueExist, 1)
+    studentsList.splice(index, 1)
     setLocalList(KEY_LOCAL, studentsList)
+  }
+}
+
+function validateButtonDelete (value) {
+  input = event.target
+  inputValue = input.value
+  var index = searchDniStudent(inputValue, studentsList)
+  if (index !== -1) {
+    deleteButtonNode.disabled = false
+  } else {
+    deleteButtonNode.disabled = true
   }
 }
 
