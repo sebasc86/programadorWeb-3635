@@ -67,39 +67,25 @@ function modifyStudent () {
       email: emailNodeValue
     }
 
-    console.log(student)
+    studentsList.push(student)
 
-    // studentsList.push(student)
+    studentsList.splice(studentIndexArray, 1)
 
-    // studentsList.splice(studentIndexArray, 1)
+    setLocalList(KEY_LOCAL, studentsList)
 
-    // setLocalList(KEY_LOCAL, studentsList)
+    var studentNode = document.getElementById(inputDniNodeValue)
 
-    // studentNode = document.getElementById(inputDniNodeValue)
+    mainListNode.removeChild(studentNode)
 
-    // mainListNode.removeChild(studentNode)
+    var studentNode = createNode(student)
 
-    // student = createNode(student)
-
-    // mainListNode.appendChild(student)
+    mainListNode.appendChild(studentNode)
   }
 
-  // studentsList.push(student)
-
-  // setLocalList(KEY_LOCAL, studentsList)
-
-  // student = createNode(student)
-
-  // mainListNode.appendChild(student)
-
-  // inputNameNode.value = ''
-  // inputLastNameNode.value = ''
-  // inputDniNode.value = ''
-  // inputEmailNode.value = ''
-  // addStudentButtonNode.disabled = true
-  // inputNameNode.classList.remove('is-valid')
-  // inputDniNode.classList.remove('is-valid')
-  // inputEmailNode.classList.remove('is-valid')
+  inputNameNode.value = ''
+  inputLastNameNode.value = ''
+  inputDniNode.value = ''
+  inputEmailNode.value = ''
 }
 
 //Busca Estudiante
@@ -107,7 +93,7 @@ function modifyStudent () {
 function searchStudent () {
   var searchName = document.getElementById('searchText')
 
-  inputSearchNode = searchName.value.trim()
+  var inputSearchNode = searchName.value.trim()
 
   var positionStudentArray = searchInArrayStudents(
     inputSearchNode,
@@ -118,7 +104,7 @@ function searchStudent () {
     mainListNode.innerHTML = ''
     for (var i = 0; i < positionStudentArray.length; i++) {
       positionStudentNumber = positionStudentArray[i]
-      student = createNode(studentsList[positionStudentNumber])
+      var student = createNode(studentsList[positionStudentNumber])
       mainListNode.appendChild(student)
     }
   }
@@ -141,8 +127,8 @@ function deleteStudent () {
 }
 
 function validateButtonDelete (value) {
-  input = event.target
-  inputValue = input.value
+  var input = event.target
+  var inputValue = input.value
   var index = searchDniStudent(inputValue, studentsList)
   if (index !== -1) {
     deleteButtonNode.disabled = false
@@ -154,10 +140,10 @@ function validateButtonDelete (value) {
 //Agrega Estudiante
 
 function studentAdd () {
-  firstNameValue = inputNameNode.value
-  lastNameValue = inputLastNameNode.value
-  emailNodeValue = inputEmailNode.value
-  dniNodeValue = inputDniNode.value
+  var firstNameValue = inputNameNode.value
+  var lastNameValue = inputLastNameNode.value
+  var emailNodeValue = inputEmailNode.value
+  var dniNodeValue = inputDniNode.value
 
   var student = {
     firstName: firstNameValue,
@@ -170,9 +156,9 @@ function studentAdd () {
 
   setLocalList(KEY_LOCAL, studentsList)
 
-  student = createNode(student)
+  studentNode = createNode(student)
 
-  mainListNode.appendChild(student)
+  mainListNode.appendChild(studentNode)
 
   inputNameNode.value = ''
   inputLastNameNode.value = ''
@@ -200,8 +186,8 @@ function validateSubmitButton () {
 //validate Email
 
 function validateEmail (event) {
-  input = event.target
-  inputValue = input.value
+  var input = event.target
+  var inputValue = input.value
 
   if (!inputValue || inputValue.indexOf('@') === -1) {
     input.classList.remove('is-valid')
@@ -219,9 +205,9 @@ function validateEmail (event) {
 //valida hace un trim de lastname setea '' por defecto si no ingresa nada
 
 function validateLastName (event) {
-  input = event.target
-  inputValue = input.value.trim()
-  inputParse = parseInt(inputValue)
+  var input = event.target
+  var inputValue = input.value.trim()
+  var inputParse = parseInt(inputValue)
 
   if (!inputValue || !!inputParse) {
     inputLastNameNode.value = ''
@@ -231,8 +217,8 @@ function validateLastName (event) {
 //Valida Nombre
 
 function validateName (event) {
-  input = event.target
-  inputValue = input.value
+  var input = event.target
+  var inputValue = input.value
 
   if (!!inputValue) {
     input.classList.add('is-valid')
@@ -249,9 +235,9 @@ function validateName (event) {
 function validateDni (event) {
   var listLocal = getLocalList(KEY_LOCAL)
 
-  input = event.target
-  inputValue = input.value
-  parsedValue = parseInt(inputValue, 10)
+  var input = event.target
+  var inputValue = input.value
+  var parsedValue = parseInt(inputValue, 10)
 
   var valueExist = searchDniStudent(inputValue, listLocal)
 
