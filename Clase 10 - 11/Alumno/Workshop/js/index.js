@@ -38,9 +38,69 @@ var searchButtonNode = document.getElementById('searchStudentButton')
 
 searchButtonNode.onclick = searchStudent
 
+var modifyStudentButtonNode = document.getElementById('modifyStudentButton')
+
+modifyStudentButtonNode.onclick = modifyStudent
 //Muestra la lista al inicio del programa
 
 viewListStudent()
+
+//Modificar Estudiante
+
+function modifyStudent () {
+  var inputDniNodeValue = inputDniNode.value
+
+  var studentIndexArray = searchDniStudent(inputDniNodeValue, studentsList)
+
+  var studentArray = studentsList[studentIndexArray]
+
+  if (studentIndexArray > -1) {
+    var firstNameValue = inputNameNode.value
+    var lastNameValue = inputLastNameNode.value
+    var emailNodeValue = inputEmailNode.value
+    var dniNodeValue = inputDniNode.value
+
+    var student = {
+      firstName: firstNameValue,
+      lastName: lastNameValue,
+      dni: dniNodeValue,
+      email: emailNodeValue
+    }
+
+    console.log(student)
+
+    // studentsList.push(student)
+
+    // studentsList.splice(studentIndexArray, 1)
+
+    // setLocalList(KEY_LOCAL, studentsList)
+
+    // studentNode = document.getElementById(inputDniNodeValue)
+
+    // mainListNode.removeChild(studentNode)
+
+    // student = createNode(student)
+
+    // mainListNode.appendChild(student)
+  }
+
+  // studentsList.push(student)
+
+  // setLocalList(KEY_LOCAL, studentsList)
+
+  // student = createNode(student)
+
+  // mainListNode.appendChild(student)
+
+  // inputNameNode.value = ''
+  // inputLastNameNode.value = ''
+  // inputDniNode.value = ''
+  // inputEmailNode.value = ''
+  // addStudentButtonNode.disabled = true
+  // inputNameNode.classList.remove('is-valid')
+  // inputDniNode.classList.remove('is-valid')
+  // inputEmailNode.classList.remove('is-valid')
+}
 
 //Busca Estudiante
 
@@ -198,9 +258,11 @@ function validateDni (event) {
   if (!isNaN(parsedValue) && valueExist === -1 && inputValue > 0) {
     input.classList.add('is-valid')
     input.classList.remove('is-invalid')
+    modifyStudentButtonNode.disabled = true
   } else {
     input.classList.remove('is-valid')
     input.classList.add('is-invalid')
+    modifyStudentButtonNode.disabled = false
   }
   validateSubmitButton()
 }
