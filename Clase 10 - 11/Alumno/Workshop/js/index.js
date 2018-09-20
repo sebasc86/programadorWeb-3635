@@ -103,7 +103,7 @@ function searchStudent () {
   if (!!inputSearchNode && positionStudentArray.length > 0) {
     mainListNode.innerHTML = ''
     for (var i = 0; i < positionStudentArray.length; i++) {
-      positionStudentNumber = positionStudentArray[i]
+      var positionStudentNumber = positionStudentArray[i]
       var student = createNode(studentsList[positionStudentNumber])
       mainListNode.appendChild(student)
     }
@@ -127,7 +127,7 @@ function deleteStudent () {
 }
 
 function validateButtonDelete (value) {
-  var input = event.target
+  var input = value.target
   var inputValue = input.value
   var index = searchDniStudent(inputValue, studentsList)
   if (index !== -1) {
@@ -156,7 +156,7 @@ function studentAdd () {
 
   setLocalList(KEY_LOCAL, studentsList)
 
-  studentNode = createNode(student)
+  var studentNode = createNode(student)
 
   mainListNode.appendChild(studentNode)
 
@@ -300,7 +300,7 @@ function includesText (strSearch, strContent) {
 
 function searchDniStudent (dni, studentsList) {
   for (var i = 0; i < studentsList.length; i++) {
-    student = studentsList[i]
+    var student = studentsList[i]
     if (dni === student.dni) {
       return i
     }
@@ -361,7 +361,7 @@ function setLocalList (key, arrayList) {
 
 function viewListStudent () {
   for (var i = 0; i < studentsList.length; i++) {
-    student = createNode(studentsList[i])
+    var student = createNode(studentsList[i])
     mainListNode.appendChild(student)
   }
 }
