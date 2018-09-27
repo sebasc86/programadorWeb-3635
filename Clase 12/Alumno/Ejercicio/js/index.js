@@ -4,7 +4,7 @@ var bool = false
 var i = 0
 squereNodes.click(circleOrCross)
 
-function circleOrCross (event) {
+function circleOrCross () {
   var node = $(this)
   var nodeCircle = node.hasClass('circle')
   var nodeCross = node.hasClass('cross')
