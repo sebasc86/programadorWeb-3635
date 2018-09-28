@@ -23,17 +23,6 @@ function validateSubmitButton() {
 
 }
 
-// function validateSubmitButton () {
-//   var addStudentButtonNode = document.getElementById('addStudentButton')
-//   var inputFields = document.getElementsByClassName('is-valid')
-
-//   if (inputFields.length === 3) {
-//     addStudentButtonNode.disabled = false
-//   } else {
-//     addStudentButtonNode.disabled = true
-//   }
-// }
-
 function validateEmail(event) {
 
   var inputNode = $(this)
