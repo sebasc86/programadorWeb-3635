@@ -3,8 +3,6 @@ console.log('init.app')
 var counter = 0
 
 $(window).keydown(function (event) {
-  var inputNode = $(this)
-
   switch (event.which) {
     case 13:
       counter = 0
