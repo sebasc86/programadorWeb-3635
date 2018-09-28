@@ -1,7 +1,6 @@
 console.log('init.app')
 
 var inputEmailNode = $('#email')
-console.log(inputEmailNode)
 
 inputEmailNode.on('blur', validateEmail)
 
