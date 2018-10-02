@@ -2,7 +2,7 @@ console.log('init.app')
 
 var counter = 0
 
-$(window).keydown(function (event) {
+$(document).keydown(function (event) {
   switch (event.which) {
     case 13:
       counter = 0
