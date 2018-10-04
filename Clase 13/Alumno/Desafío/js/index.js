@@ -1,152 +1,89 @@
-console.log('init.app')
+$(document).ready(function () {
 
-var firstName = $('#firstName')
+  console.log('init.app')
 
-firstName.one('blur', validateName)
+  var firstName = $('#firstName')
 
-var comments = $('#comments')
+  firstName.one('blur', validateInput)
 
-comments.one('blur', validateComments)
+  var comments = $('#comments')
 
-var inputEmailNode = $('#email')
+  comments.one('blur', validateInput)
 
-inputEmailNode.on('blur', validateEmail)
+  var inputEmailNode = $('#email')
 
-function validateSubmitButton () {
-  if ($('.is-valid').length >= 3) {
-    $('#submitButton').removeAttr('disabled')
-  } else {
-    $('#submitButton').attr('disabled', true)
+  inputEmailNode.on('blur', validateEmail)
+
+  function validateSubmitButton () {
+    if ($('.is-valid').length >= 3) {
+      $('#submitButton').removeAttr('disabled')
+    } else {
+      $('#submitButton').attr('disabled', true)
+    }
   }
-}
 
-function validateEmail (event) {
-  var inputNode = $(this)
-  var value = inputNode.val()
-  value = $.trim(value)
+  function validateEmail (event) {
+    var inputNode = $(this)
+    var value = inputNode.val()
+    value = $.trim(value)
+    var errorLabel = ''
+    var parentNode = inputNode.parent()  
+    inputNode.next().remove()
 
-  if (!value) {
-    inputNode.removeClass('is-valid')
-    inputNode.addClass('is-invalid')
+    if (!value) {
+     
+      inputNode.removeClass('is-valid')
+      inputNode.addClass('is-invalid')
+      errorLabel = '*El Campo Requerido'
+      parentNode.append('<div style="color:red">' + errorLabel + '</div>')
 
-    if ($('#rq-email').length === 0) {
-      inputNode
-        .parent()
-        .append(
-          '<div id="rq-email" style="color: red">*El campo es requerido</div>'
-        )
+    } else if (value.indexOf('@') === -1) {
+          inputNode.removeClass('is-valid')
+          inputNode.addClass('is-invalid')
+          errorLabel = 'Debe contener un arroba @' 
+          parentNode.append('<div style="color:red">' + errorLabel + '</div>')
+
+    } else if (value.indexOf('.') === -1) {
+          inputNode.removeClass('is-valid')
+          inputNode.addClass('is-invalid')
+          errorLabel = 'Debe contener un punto "."' 
+          parentNode.append('<div style="color:red">' + errorLabel + '</div>')
+
+    } else {
+      inputNode.addClass('is-valid')
+      inputNode.removeClass('is-invalid')
     }
 
-    $('#rq-at').remove()
-    $('#rq-point').remove()
-  } else if (value.indexOf('@') === -1) {
-    inputNode.removeClass('is-valid')
-    inputNode.addClass('is-invalid')
+    if (event.type === 'blur') {
+      inputEmailNode.on('input', validateEmail)
+    }
+    validateSubmitButton()
+  }
 
-    if ($('#rq-at').length === 0) {
-      inputNode
-        .parent()
-        .append('<div id="rq-at" style="color: red">*falta un arroba</div>')
+  
+
+  function validateInput (event) {
+    var inputNode = $(this)
+    var value = inputNode.val()
+    value = $.trim(value)
+    var errorLabel = ''
+
+    inputNode.next().remove()
+
+    if (!value) {
+      inputNode.removeClass('is-valid')
+      inputNode.addClass('is-invalid')
+      errorLabel = '*El campo es requerido'
+      inputNode.parent().append('<div style="color:red">' + errorLabel + '</div>')
+    } else {
+      inputNode.removeClass('is-invalid')
+      inputNode.addClass('is-valid')
     }
 
-    $('#rq-email').remove()
-    $('#rq-point').remove()
-  } else if (value.indexOf('.') === -1) {
-    inputNode.removeClass('is-valid')
-    inputNode.addClass('is-invalid')
-
-    if ($('#rq-point').length === 0) {
-      inputNode
-        .parent()
-        .append('<div id="rq-point" style="color: red">*falta un punto</div>')
+    if (event.type === 'blur') {
+      inputNode.on('input', validateInput)
     }
 
-    $('#rq-at').remove()
-    $('#rq-email').remove()
-  } else {
-    inputNode.addClass('is-valid')
-    inputNode.removeClass('is-invalid')
-    $('#rq-email').remove()
-    $('#rq-at').remove()
-    $('#rq-point').remove()
+    validateSubmitButton()
   }
-
-  if (event.type === 'blur') {
-    inputEmailNode.on('input', validateEmail)
-  }
-  validateSubmitButton()
-}
-
-function validateComments (event) {
-  var inputCommentsNode = $(this)
-  var valueInputComments = inputCommentsNode.val()
-  valueInputComments = $.trim(valueInputComments)
-
-  if (!valueInputComments) {
-    inputCommentsNode.removeClass('is-valid')
-    inputCommentsNode.addClass('is-invalid')
-    inputCommentsNode
-
-    if ($('#rq-comments').length === 0) {
-      inputCommentsNode
-        .parent()
-        .append(
-          '<div id="rq-comments" style="color: red">*El campo es requerido</div>'
-        )
-    }
-    $('#min-length').remove()
-  } else if (valueInputComments.length < 8) {
-    inputCommentsNode.removeClass('is-valid')
-    inputCommentsNode.addClass('is-invalid')
-
-    if ($('#min-length').length === 0) {
-      inputCommentsNode
-        .parent()
-        .append(
-          '<div id="min-length" style="color: red">*minimo de letras 8</div>'
-        )
-    }
-
-    $('#rq-comments').remove()
-  } else {
-    inputCommentsNode.removeClass('is-invalid')
-    inputCommentsNode.addClass('is-valid')
-    $('#rq-comments').remove()
-    $('#min-length').remove()
-  }
-
-  if (event.type === 'blur') {
-    inputCommentsNode.on('input', validateComments)
-  }
-  validateSubmitButton()
-}
-
-function validateName (event) {
-  var inputNode = $(this)
-
-  var value = inputNode.val()
-  value = $.trim(value)
-
-  if (!value) {
-    inputNode.removeClass('is-valid')
-    inputNode.addClass('is-invalid')
-
-    if ($('#rq-name').length === 0) {
-      inputNode
-        .parent()
-        .append(
-          '<div id="rq-name" style="color: red">*El campo es requerido</div>'
-        )
-    }
-  } else {
-    inputNode.removeClass('is-invalid')
-    inputNode.addClass('is-valid')
-    $('#rq-name').remove()
-  }
-
-  if (event.type === 'blur') {
-    inputNode.on('input', validateName)
-  }
-
-  validateSubmitButton()
-}
+})
