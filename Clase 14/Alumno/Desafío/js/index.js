@@ -4,7 +4,6 @@ $(document).ready(function () {
   $('.btn').click(function () {
     var buttonParentParent = $(this).parent().parent()
     var parentId = buttonParentParent.attr('id')
-    console.log(parentId)
     removeElementWithAnimation(parentId)
   })
 
