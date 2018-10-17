@@ -1,7 +1,15 @@
 import { getData } from '../utils/ajax'
+import { getLocalList, setLocalList } from '../utils/localStorage'
+import { eyeTranslate, genderTranslate } from '../utils/translates'
+import { searchPeopleIndexByUrl } from '../utils/search'
 
 function peopleController () {
   console.log('Se cargo controller de people')
+
+  var apiResults = []
+
+  var localPeople = getLocalList('peopleList')
+
   var tableBodyNode = $('#tableBody')
 
   var seeMoreButton = $('#seeMore')
@@ -15,16 +23,36 @@ function peopleController () {
       console.log('Ok los personajes son:', data)
       var people = data.results
 
+      if (data.results) {
+        apiResults = apiResults.concat(data.results)
+        //concat concatena un resultado con otro, ejemplo este concatena un array con otro array osea
+        // que es como que lo agrega.
+        console.log(apiResults)
+        //apiResults seria como nuestra fuente de verdad, los guarda en memoria lo que trae de la api.
+      }
+
       var person
 
       for (var i = 0; i < people.length; i++) {
         person = people[i]
         var url = person.url
+
+        var localIndex = searchPeopleIndexByUrl(person.url, localPeople)
+
+        var addButton
+
         url = url.replace('https://swapi.co/api/people/', '')
 
         var id = url.replace('/', '')
 
-        console.log(id)
+        if (localIndex === -1) {
+          addButton =
+            '<button id="button' +
+            id +
+            '" type="button" class="btn btn-success">Guardar</button>'
+        } else {
+          addButton = ''
+        }
 
         tableBodyNode.append(
           '<tr id="' +
@@ -43,8 +71,34 @@ function peopleController () {
             ' Kg' +
             '</td><td style="text-align: center">' +
             eyeTranslate('ES', person.eye_color) +
-            '</td><td><button type="button" class="btn btn-success">Guardar</button></td></tr>'
+            '</td><td>' +
+            addButton +
+            '</td></tr>'
         )
+
+        $('#button' + id).click(function () {
+          var button = $(this)
+
+          var buttonId = button.attr('id')
+
+          var id = buttonId.replace('button', '')
+
+          var newUrl = 'https://swapi.co/api/people/' + id + '/'
+
+          var index = searchPeopleIndexByUrl(newUrl, apiResults)
+          console.log(index)
+
+          if (index !== -1) {
+            var personInfo = apiResults[index]
+            localPeople.push(personInfo)
+
+            setLocalList('peopleList', localPeople)
+
+            button.remove()
+
+            console.log(personInfo)
+          }
+        })
       }
       if (data.next) {
         seeMoreButton.one('click', function () {
@@ -55,43 +109,6 @@ function peopleController () {
       }
     }
   }
-}
-
-function genderTranslate (gender) {
-  switch (gender) {
-    case 'male':
-      return 'Masculino'
-      break
-    case 'female':
-      return 'Femenino'
-      break
-    case 'n/a':
-      return 'n/a'
-      break
-    case 'hermaphrodite':
-      return 'hermafrodita'
-      break
-    default:
-      return gender
-      break
-  }
-}
-
-var TRANSLATES = {
-  ES: {
-    blue: 'Azules',
-    yellow: 'Amarillos',
-    red: 'Rojos'
-  },
-  EN: {
-    blue: 'Blue',
-    yellow: 'Yellow',
-    red: 'Red'
-  }
-}
-
-function eyeTranslate (lang, eyeColor) {
-  return TRANSLATES[lang][eyeColor] || eyeColor
 }
 
 export default peopleController
